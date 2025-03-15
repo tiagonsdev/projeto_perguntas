@@ -15,7 +15,6 @@ class _PerguntaAppState extends State<PerguntaApp>{
     setState(() {
       _perguntaSelecionada++;
     });
-    print(_perguntaSelecionada);
   }
 
   @override
@@ -39,28 +38,26 @@ Widget build(BuildContext context) {
     },
   ];
 
+  //aqui é a lista de respostas que vão ser feitas no app
+
+  List<String> respostas = perguntas[_perguntaSelecionada].cast()['respostas'];
+
   //aqui são as partes da interfaces do app, lembra um pouco html
 
   return MaterialApp(
 
     //aqui é o corpo do app
-
     home: Scaffold(
       appBar: AppBar(
-
         //aqui é o titulo do app
-
         title: Text('Perguntas'),
       ),
-
       //aqui é a coluna do app do qual sera feito as perguntas
-
       body: Column(
         children: [
           Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
-          Resposta('Resposta 1',_responder),
-          Resposta('Resposta 2',_responder),
-          Resposta('Resposta 3',_responder),
+        //aqui é a lista de respostas usando o map para mapear as respostas
+         ...respostas.map((t) => Resposta(t,_responder)), 
         ],
       ),
     ),
