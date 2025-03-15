@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './resposta.dart';
 
 //metodo principal é aqui q tudo começa
 
@@ -24,8 +25,18 @@ Widget build(BuildContext context) {
 // aqui são as perguntas que vão ser feitas no app
 
   final perguntas = [
-    'Qual é a sua  cor favorita?',
-    'Qual é o seu animal favorito?',
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho','Verde','Branco'],
+    },
+    {
+      'texto':  'Qual é o seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra','Elefante','Leão'],
+    },
+    {
+      'texto': 'Qual é o seu genero de musica favorito?',
+      'respostas': ['Indie', 'Rock','Mpb','Samba'],
+    },
   ];
 
   //aqui são as partes da interfaces do app, lembra um pouco html
@@ -35,9 +46,6 @@ Widget build(BuildContext context) {
     //aqui é o corpo do app
 
     home: Scaffold(
-
-      //aqui é o app bar do app
-
       appBar: AppBar(
 
         //aqui é o titulo do app
@@ -49,20 +57,10 @@ Widget build(BuildContext context) {
 
       body: Column(
         children: [
-          Questao(perguntas[_perguntaSelecionada]),
-          ElevatedButton(
-            child: Text('Resposta 1'),
-            onPressed: _responder,
-          ),
-          ElevatedButton(
-            child: Text('Resposta 2'),
-            onPressed: _responder,
-          ),
-          ElevatedButton(
-            child: Text('Resposta 3'),
-            onPressed: _responder,
-          ),
-          
+          Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
+          Resposta('Resposta 1',_responder),
+          Resposta('Resposta 2',_responder),
+          Resposta('Resposta 3',_responder),
         ],
       ),
     ),
